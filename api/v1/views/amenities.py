@@ -24,7 +24,7 @@ def list_amenities():
             abort(400, "Missing name")
         new_amenity = Amenity(**data)
         new_amenity.save()
-        return jsonify(new_amenity.to_dict())
+        return jsonify(new_amenity.to_dict()), 201
 
 @app_views.route('/amenities/<amenity_id>', methods=["GET", "DELETE", "PUT"],
                  strict_slashes=False)
@@ -38,14 +38,14 @@ def amenity(amenity_id):
     if request.method == "DELETE":
         storage.delete(amenity)
         storage.save()
-        return jsonify({})
+        return jsonify({}), 200
     if request.method == "PUT":
         data = request.get_json()
         if data is None:
             abort(400, "Not a JSON")
         for key, value in data.items():
-            IF key != "id" AND key != "created_at" AND key != "updated_at"\
-                    AND hasattr(amenity, key):
+            if key != "id" and key != "created_at" and key != "updated_at"\
+                    and hasattr(amenity, key):
                 setattr(amenity, key, value)
         storage.save()
-        return jsonify(amenity.to_dict())
+        return jsonify(amenity.to_dict()), 200
