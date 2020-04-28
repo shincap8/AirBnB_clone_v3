@@ -7,6 +7,7 @@ from models.state import State
 
 @app_views.route('/states', methods=["GET", "POST"], strict_slashes=False)
 def list_states():
+    """list states"""
     if request.method == "GET":
         states = storage.all("State")
         states_dict = []
@@ -26,6 +27,7 @@ def list_states():
 
 @app_views.route('/states/<state_id>', methods=["GET", "DELETE", "PUT"], strict_slashes=False)
 def state(state_id):
+    """State"""
     state = storage.get("State", state_id)
     if state is None:
         abort (404)
