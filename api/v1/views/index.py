@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" Index """
 from flask import Flask, jsonify, request
 from api.v1.views import app_views
 from models import storage
