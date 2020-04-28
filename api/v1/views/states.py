@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" States """
 from flask import Flask, jsonify, request, abort
 from api.v1.views import app_views
 from models import storage
@@ -25,12 +26,13 @@ def list_states():
         return jsonify(new_state.to_dict()), 201
 
 
-@app_views.route('/states/<state_id>', methods=["GET", "DELETE", "PUT"], strict_slashes=False)
+@app_views.route('/states/<state_id>', methods=["GET", "DELETE", "PUT"],
+                 strict_slashes=False)
 def state(state_id):
     """State"""
     state = storage.get("State", state_id)
     if state is None:
-        abort (404)
+        abort(404)
     if request.method == "GET":
         return jsonify(state.to_dict())
     if request.method == "DELETE":
@@ -42,7 +44,8 @@ def state(state_id):
         if data is None:
             abort(400, "Not a JSON")
         for key, value in data.items():
-            if key != "id" and key != "created_at" and key != "updated_at" and hasattr(state, key):
+            if key != "id" and key != "created_at" and key != "updated_at"\
+             and hasattr(state, key):
                 setattr(state, key, value)
         storage.save()
         return jsonify(state.to_dict()), 200
