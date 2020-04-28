@@ -6,11 +6,13 @@ from models import storage
 
 @app_views.route('/status', methods=["GET"], strict_slashes=False)
 def hello():
+    """Hello"""
     return jsonify({"status": "OK"})
 
 
 @app_views.route('/stats', methods=["GET"])
 def stats():
+    """Storage Stats"""
     classes = {"Amenity": "amenities", "City": "cities", "State": "states",
                "Place": "places", "Review": "reviews", "User": "users"}
     response = {}
