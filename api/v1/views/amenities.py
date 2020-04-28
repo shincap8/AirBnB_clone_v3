@@ -26,6 +26,7 @@ def list_amenities():
         new_amenity.save()
         return jsonify(new_amenity.to_dict()), 201
 
+
 @app_views.route('/amenities/<amenity_id>', methods=["GET", "DELETE", "PUT"],
                  strict_slashes=False)
 def amenity(amenity_id):
