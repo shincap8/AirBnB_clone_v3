@@ -9,7 +9,7 @@ from models.city import City
 @app_views.route('/states/<state_id>/cities', methods=["GET", "POST"],
                  strict_slashes=False)
 def list_cities(state_id):
-    """ Cities's list """
+    """ Cities' list """
     state = storage.get("State", state_id)
     if state is None:
         abort(404)
