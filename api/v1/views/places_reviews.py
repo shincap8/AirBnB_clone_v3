@@ -18,16 +18,16 @@ def list_reviews(place_id):
         reviews = storage.all("Review")
         reviews_dict = []
         for review in reviews.values():
-            if reviews.place_id == place_id:
-                reviews_dict.append(reviews.to_dict())
-        return jsonify(cities_dict)
+            if review.place_id == place_id:
+                reviews_dict.append(review.to_dict())
+        return jsonify(reviews_dict)
     if request.method == "POST":
         data = request.get_json()
         if data is None:
             abort(400, "Not a JSON")
         if "user_id" not in data:
             abort(400, "Missing user_id")
-        user = storage.get("User", user_id)
+        user = storage.get("User", data["user_id"])
         if user is None:
             abort(404)
         if "text" not in data:
