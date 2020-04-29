@@ -37,7 +37,7 @@ List of commands this console current supports:
 * `destroy` - Deletes an instance based on the class name and id (save the change into the JSON file). 
 * `show` - Prints the string representation of an instance based on the class name and id.
 * `all` - Prints all string representation of all instances based or not on the class name. 
-* `update` - Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). 
+* `update` - Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
 
 #### `models/` directory contains classes used for this project:
 [base_model.py](/models/base_model.py) - The BaseModel class from which future classes will be derived
@@ -151,12 +151,22 @@ EOF  all  create  destroy  help  quit  show  update
 ```
 
 ## Bugs
-No known bugs at this time. 
+add `cascade="all, delete"` to cities, places and reviews relationship, so when you delete an object that its id is a foreign key of another, the owner of the foreign key is also deleted.
 
 ## Authors
 Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
 
 Second part of Airbnb: Joann Vuong
+
+Third part Airbnb :
+
+Camilo Morales - [Github](https://github.com/thecamo1509) / [Twitter](https://twitter.com/camiloandres_15)
+Sara Hincapié - [Github](https://github.com/shincap8) / [Twitter](https://twitter.com/sarahincapimon1)
+
+## Changes
+
+Add get and count method to file_storage and db_storage
+
 ## License
 Public Domain. No copy write protection. 
