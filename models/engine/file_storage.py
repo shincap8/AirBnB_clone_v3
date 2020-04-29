@@ -74,8 +74,8 @@ class FileStorage:
         if cls and id:
             total_objects = self.all(cls)
             for object in total_objects.values():
-                if object.__class__ == cls or object.__class__.__name__ == cls\
-                 and object.id == id:
+                name = object.__class__.__name__
+                if object.__class__ == cls or name == cls and object.id == id:
                     return (object)
         return None
 
