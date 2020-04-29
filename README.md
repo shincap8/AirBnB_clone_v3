@@ -16,6 +16,7 @@ The console is the first segment of the AirBnB project at Holberton School that 
 * [Examples of use](#examples-of-use)
 * [Bugs](#bugs)
 * [Authors](#authors)
+* [Changes](#changes)
 * [License](#license)
 
 ## Environment
@@ -39,6 +40,12 @@ List of commands this console current supports:
 * `all` - Prints all string representation of all instances based or not on the class name. 
 * `update` - Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
 
+#### `api/v1/` directory contains the base of the api used for this project:
+* The app file help us register the blueprint and tell where is the port and host to hear the request for the api
+
+#### `api/v1/views` directory contains the different views for the different request of the API:
+* each file has how to handle the different request for each url the API handles
+
 #### `models/` directory contains classes used for this project:
 [base_model.py](/models/base_model.py) - The BaseModel class from which future classes will be derived
 * `def __init__(self, *args, **kwargs)` - Initialization of the base model
@@ -59,7 +66,9 @@ Classes inherited from Base Model:
 * `def all(self)` - returns the dictionary __objects
 * `def new(self, obj)` - sets in __objects the obj with key <obj class name>.id
 * `def save(self)` - serializes __objects to the JSON file (path: __file_path)
-* ` def reload(self)` -  deserializes the JSON file to __objects
+* `def reload(self)` -  deserializes the JSON file to __objects
+* `def get(self, cls, id)` -  retrieves one object matching the class and ID passed
+* `def count(self, cls=None)` -  Count objects of the class specified or all if no class is passed as argument
 
 #### `/tests` directory contains all unit test cases for this project:
 [/test_models/test_base_model.py](/tests/test_models/test_base_model.py) - Contains the TestBaseModel and TestBaseModelDocs classes
@@ -151,7 +160,7 @@ EOF  all  create  destroy  help  quit  show  update
 ```
 
 ## Bugs
-add `cascade="all, delete"` to cities, places and reviews relationship, so when you delete an object that its id is a foreign key of another, the owner of the foreign key is also deleted.
+When you delete a State that has cities related to it Alchemy raise an error, add `cascade="all, delete"` to cities, places and reviews relationship, so when you delete an object that its id is a foreign key of another, the owner of the foreign key is also deleted.
 
 ## Authors
 Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
