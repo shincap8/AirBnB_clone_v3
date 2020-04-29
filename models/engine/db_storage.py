@@ -78,12 +78,13 @@ class DBStorage:
     def get(self, cls, id):
         """Method to retrieve one object matching the class and ID"""
         if cls and id:
-            total_objects = self.all(cls)
-            for object in total_objects.values():
-                name = object.__class__.__name__
-                if object.__class__ == cls or name == cls and object.id == id:
-                    return (object)
-        return None
+            classlist = self.all(cls)
+            if type(cls) != str:
+                classname = cls.__name__
+            else:
+                classname = cls
+            fullobject = "{}.{}".format(classname, id)
+        return classlist.get(fullobject)
 
     def count(self, cls=None):
         """ Count objects """
