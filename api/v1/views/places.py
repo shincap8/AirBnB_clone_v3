@@ -32,7 +32,7 @@ def list_places(city_id):
         if "name" not in data:
             abort(400, "Missing name")
         data["city_id"] = city_id
-        new_place = place(**data)
+        new_place = Place(**data)
         new_place.save()
         return jsonify(new_place.to_dict()), 201
 
