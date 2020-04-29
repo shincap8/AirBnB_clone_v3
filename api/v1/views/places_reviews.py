@@ -9,7 +9,7 @@ from models.review import Review
 
 @app_views.route('/places/<place_id>/reviews', methods=["GET", "POST"],
                  strict_slashes=False)
-def list_places(place_id):
+def list_reviews(place_id):
     """ Reviews' list """
     place = storage.get("Place", place_id)
     if place is None:
